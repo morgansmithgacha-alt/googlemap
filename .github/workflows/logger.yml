@@ -1,0 +1,23 @@
+name: Log Location
+on:
+  repository_dispatch:
+    types: [location_update]
+
+jobs:
+  save_coordinates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Append to Log File
+        run: |
+          echo "${{ github.event.client_payload.timestamp }} | Device: ${{ github.event.client_payload.device }} | Map Link: https://google.com{{ github.event.client_payload.latitude }},${{ github.event.client_payload.longitude }}" >> logs.txt
+          
+      - name: Save Changes to GitHub
+        run: |
+          git config --global user.name "GitHub Location Bot"
+          git config --global user.email "bot@github.com"
+          git add logs.txt
+          git commit -m "New location added"
+          git push
